@@ -12,7 +12,15 @@ def user_signup():
     verify_pass = request.form['verify-pass']
     email = request.form['email']
 
-    return
+    if (not username) or (username.strip() == ''):
+        error = "Please enter a username"
+        return redirect("/?error=" + cgi.escape(error, quote=True))
+    else:
+        if password != verify_pass:
+            error = "Password didn't verify"
+            return redirect("/?error=" + cgi.escape(error, quote=True))
+        else:
+            return redirect('/welcome')
 
 @app.route('/welcome')
 def success():
