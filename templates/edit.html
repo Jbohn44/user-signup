@@ -1,31 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="/username" method="post">
+<h1>User Signup</h1>
+<form action="/user-signup" method="post">
     <label>
         Username 
         <input type="text" name="username" />
     </label>
-</form>
-<form action="/password" method="post">
     <label>
         Password
-        <input type="text" name="password" />
+        <input type="password" name="password" />
     </label>
-</form>
-<form action="/verify_pass" method="post">
     <label>
         Verify Password
-        <input type="text" name="verify-pass" />
+        <input type="password" name="verify-pass" />
     </label>
-</form action="/email" method="post">
-<form>
+
     <label>
         Email(optional)
         <input type="text" name="email" />
     </label>
+    <input type="submit" name="Submit" />
 </form>
-<input type="submit" value="Submit" />
 
-
+{% if error%}
+    <p class="error">{{error}}</p>
+{% endif %}
 {% endblock %}
