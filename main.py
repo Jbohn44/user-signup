@@ -16,11 +16,25 @@ def user_signup():
         error = "Please enter a username"
         return redirect("/?error=" + cgi.escape(error, quote=True))
     else:
-        if password != verify_pass:
-            error = "Password didn't verify"
+        if (len(username) < 3) or (len(username) > 20):
+            error = "Username needs to be between 3 and 20 characters"
             return redirect("/?error=" + cgi.escape(error, quote=True))
         else:
-            return redirect('/welcome')
+            if (not password) or (password.strip()== ''):
+                error = "Please enter a password"
+                return redirect("/?error=" + cgi.escape(error, quote=True))
+            else:
+                if (len(password) < 3) or (len(password) > 20):
+                    error = "Password needs to be between 3 and 20 characters"
+                    return redirect("/?error=" + cgi.escape(error, quote=True))
+                else:
+                    if (password != verify_pass) or (not verify_pass):
+                        error = "Password didn't verify"
+                        return redirect("/?error=" + cgi.escape(error, quote=True))
+                    else:
+                
+                
+                        return redirect('/welcome')
 
 @app.route('/welcome')
 def success():
