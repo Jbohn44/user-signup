@@ -12,7 +12,7 @@ def user_signup():
     verify_pass = request.form['verify-pass']
     email = request.form['email']
 
-    if (not username) or (username.strip() == ''):
+    if (not username) or (username.strip() == ' '):
         error = "Please enter a username"
         return redirect("/?error=" + cgi.escape(error, quote=True))
     else:
@@ -20,7 +20,7 @@ def user_signup():
             error = "Username needs to be between 3 and 20 characters"
             return redirect("/?error=" + cgi.escape(error, quote=True))
         else:
-            if (not password) or (password.strip()== ''):
+            if (not password) or (password.strip()== ' '):
                 error = "Please enter a password"
                 return redirect("/?error=" + cgi.escape(error, quote=True))
             else:
