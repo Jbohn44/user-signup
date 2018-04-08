@@ -3,27 +3,36 @@
 {% block content %}
 <h1>User Signup</h1>
 <form action="/user-signup" method="post">
-    <label>
-        Username 
-        <input type="text" name="username" value="{0}" />
-    </label>
-    <label>
-        Password
-        <input type="password" name="password" />
-    </label>
-    <label>
-        Verify Password
-        <input type="password" name="verify-pass" />
-    </label>
+   <table>
+       <tr>
+            <td><label>Username</label></td>
+        
+                <td><input type="text" name="username" /></td>
+        </tr>        
+        <tr>
+            <td><label>Password</label></td>
+                <td><input type="password" name="password" /></td>
+        </tr>    
+    
+        <tr>
+            <td><label>Verify Password</label></td>
+                <td><input type="password" name="verify-pass" /></td>
+    
+        </tr>
 
-    <label>
-        Email(optional)
-        <input type="text" name="email" />
-    </label>
-    <input type="submit" name="Submit" />
-</form>
+        <tr>
+            <td><label>Email(optional)</label></td>
+                <td><input type="text" name="email" /></td>
+        </tr>
+       
+    <tr>
 
+        <td><input type="submit" value="Submit"</td>
+
+    </tr>
+</table>
 {% if error%}
-    <p class="error">{{error}}</p>
+<p class="error">{{error}}</p>
 {% endif %}
+</form>
 {% endblock %}
