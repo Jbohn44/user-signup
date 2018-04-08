@@ -7,22 +7,26 @@
        <tr>
             <td><label>Username</label></td>
         
-                <td><input type="text" name="username" /></td>
+                <td><input type="text" name="username" value="{{username}}"/></td>
+                <td><p class="error">{{error}}</p></td>
         </tr>        
         <tr>
             <td><label>Password</label></td>
                 <td><input type="password" name="password" /></td>
+                <td><p class="error">{{error}}</p></td>
         </tr>    
     
         <tr>
             <td><label>Verify Password</label></td>
                 <td><input type="password" name="verify-pass" /></td>
+                <td><p class="error">{{error}}</p></td>
     
         </tr>
 
         <tr>
             <td><label>Email(optional)</label></td>
                 <td><input type="text" name="email" /></td>
+                <td><p class="error">{{error}}</p></td>
         </tr>
        
     <tr>
@@ -31,8 +35,5 @@
 
     </tr>
 </table>
-{% if error%}
-<p class="error">{{error}}</p>
-{% endif %}
 </form>
 {% endblock %}

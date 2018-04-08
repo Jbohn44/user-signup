@@ -6,11 +6,15 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 @app.route('/user-signup', methods=['POST'])
-def user_signup():
+def validate():
     username = request.form['username']
     password = request.form['password']
     verify_pass = request.form['verify-pass']
     email = request.form['email']
+
+    username_error = ''
+    password_error = ''
+    email_error = ''
 
     if (not username) or (username.strip() == ''):
         error = "Please enter a username"
@@ -36,10 +40,10 @@ def user_signup():
                 
                         return redirect('/welcome')
 
-@app.route('/welcome', methods=["POST"])
+@app.route('/welcome', methods=['POST'])
 def success():
-    username = request.args.get('username')
-    return render_template('welcome.html', username = username)
+    username = request.form['username']
+    return render_template('welcome.html')
 
 @app.route('/')
 def index():
