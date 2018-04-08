@@ -16,29 +16,16 @@ def validate():
     password_error = ''
     email_error = ''
 
-    if (not username) or (username.strip() == ''):
+    if (not username) or (username.strip() == '') or ((len(username) > 20 or len(username) < 3)):
         username_error = "That's not a valid username"
-        return redirect("/?error=" + cgi.escape(username_error, quote=True))
+
+    if (not password) or (password.strip() == '') or ((len(password) > 20 or len(password) < 3)):
+            password_error = "That's not a valid password"
+    
+    if (not username_error) and (not password_error):        
+        return redirect('/welcome')
     else:
-        if (len(username) < 3) or (len(username) > 20):
-            error = "Username needs to be between 3 and 20 characters"
-            return redirect("/?error=" + cgi.escape(error, quote=True))
-        else:
-            if (not password) or (password.strip()== ''):
-                error = "Please enter a password"
-                return redirect("/?error=" + cgi.escape(error, quote=True))
-            else:
-                if (len(password) < 3) or (len(password) > 20):
-                    error = "Password needs to be between 3 and 20 characters"
-                    return redirect("/?error=" + cgi.escape(error, quote=True))
-                else:
-                    if (password != verify_pass) or (not verify_pass):
-                        error = "Password didn't verify"
-                        return redirect("/?error=" + cgi.escape(error, quote=True))
-                    else:
-                
-                
-                        return redirect('/welcome')
+        return render_template('edit.html', username_error = username_error, password_error = password_error)    
 
 @app.route('/welcome', methods=['POST'])
 def success():
@@ -47,8 +34,8 @@ def success():
 
 @app.route('/')
 def index():
-    error = request.args.get("error")
-    return render_template('edit.html', error = error)
+    error = request.args.get("username_error")
+    return render_template('edit.html', username_error = error)
 
 
 app.run()
