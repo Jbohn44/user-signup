@@ -17,8 +17,8 @@ def validate():
     email_error = ''
 
     if (not username) or (username.strip() == ''):
-        error = "Please enter a username"
-        return redirect("/?error=" + cgi.escape(error, quote=True))
+        username_error = "That's not a valid username"
+        return redirect("/?error=" + cgi.escape(username_error, quote=True))
     else:
         if (len(username) < 3) or (len(username) > 20):
             error = "Username needs to be between 3 and 20 characters"
