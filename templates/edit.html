@@ -2,12 +2,12 @@
 
 {% block content %}
 <h1>User Signup</h1>
-<form action="/error" method="post">
+<form action="/user-signup" method="post">
    <table>
        <tr>
             <td><label>Username</label></td>
         
-                <td><input type="text" name="username"/>
+                <td><input type="text" name="username" value='{{username}}'/>
                 <span class="error">{{username_error}}</span></td>
         </tr>        
         <tr>
@@ -25,7 +25,7 @@
 
         <tr>
             <td><label>Email(optional)</label></td>
-                <td><input type="text" name="email" />
+                <td><input type="text" name="email" value="{{email}}" />
                 <span class="error">{{email_error}}</span></td>
         </tr>
        
