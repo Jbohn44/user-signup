@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 app.config['DEBUG'] = True
 
+
 @app.route('/error', methods=['POST'])
 def validate():
     username = request.form['username']
@@ -39,6 +40,7 @@ def validate():
         return render_template('edit.html', username_error = username_error, 
             password_error = password_error, verify_error = verify_error,
             email_error = email_error)    
+
 
 @app.route('/welcome', methods=['POST'])
 def success():
