@@ -18,35 +18,42 @@ def validate():
     email_error = ''
     verify_error = ''
 
-
+    #Validates username and if username error, clears it
     if (not username) or (username.strip() == '') or ((len(username) > 20 or len(username) < 3)) or (' ' in username):
         username_error = "That's not a valid username"
         username = ''
-
+    
+    #Validates password
     if (not password) or (password.strip() == '') or ((len(password) > 20 or len(password) < 3)) or (' ' in password):
             password_error = "That's not a valid password"
 
+    #Password verification
     if (password != verify_pass) or (not verify_pass):
         verify_error = "Passwords don't match"
 
+    #Email check
     if email == '':
         email = ''
     else:
-        if ('@' and '.') not in email:
+        x = '.'
+        y = '@'
+        if ('@' and '.') not in email or (' ' in email) or (email.count(x) > 1) or (email.count(y) > 1) or (len(email) > 20) or (len(email) < 3):
             email_error = "That's not a valid email"
             email = ''
     
     if (not username_error) and (not password_error) and (not verify_error) and (not email_error):        
-        return render_template('welcome.html', username = username)
+        return redirect('/welcome?username={0}'.format(username))
     else:
+        #Renders the error page
         return render_template('edit.html', username_error = username_error, 
             password_error = password_error, verify_error = verify_error,
             email_error = email_error, username = username, email = email)    
 
 
-@app.route('/welcome', methods=['POST'])
+@app.route('/welcome')
 def success():
-    return render_template('welcome.html')
+    username = request.args.get('username')
+    return render_template('welcome.html', username = username)
 
 @app.route('/')
 def index():
